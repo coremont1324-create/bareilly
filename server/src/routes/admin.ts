@@ -34,6 +34,7 @@ const listQuery = z.object({
   status: z.string().max(20).optional(),
   q: z.string().max(120).optional(),
   page: z.coerce.number().int().min(1).optional(),
+  pageSize: z.coerce.number().int().min(1).max(100).optional(),
 });
 
 const versionOnly = z.object({ version: z.number().int().positive() });

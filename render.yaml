@@ -1,0 +1,33 @@
+# Render Blueprint: one Node web service + one managed PostgreSQL database.
+# After the first deploy, open a Shell on the service and run:
+#   ADMIN_EMAIL=you@example.org ADMIN_PASSWORD='…' node server/dist/scripts/seed.js --no-demo
+# (omit --no-demo to load the labelled demonstration records).
+databases:
+  - name: mandal-portal-db
+    plan: basic-256mb
+    databaseName: mandal_portal
+    user: mandal
+
+services:
+  - type: web
+    name: mandal-schemes-portal
+    runtime: node
+    plan: starter
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: node server/dist/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: mandal-portal-db
+          property: connectionString
+      - key: DATABASE_SSL
+        value: "false"
+      - key: TRUST_PROXY
+        value: "true"
+      - key: PUBLIC_BASE_URL
+        sync: false

@@ -11,7 +11,10 @@
     "db:seed": "tsx --env-file-if-exists=../.env src/scripts/seed.ts",
     "admin:create": "tsx --env-file-if-exists=../.env src/scripts/createAdmin.ts",
     "typecheck": "tsc -p tsconfig.json",
-    "test": "vitest run"
+    "test": "vitest run",
+    "db:migrate:prod": "node --env-file-if-exists=../.env dist/scripts/migrate.js",
+    "db:seed:prod": "node --env-file-if-exists=../.env dist/scripts/seed.js",
+    "admin:create:prod": "node --env-file-if-exists=../.env dist/scripts/createAdmin.js"
   },
   "dependencies": {
     "@mandal/shared": "*",
