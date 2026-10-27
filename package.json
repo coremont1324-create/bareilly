@@ -1,0 +1,31 @@
+{
+  "name": "mandal-schemes-portal",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Mandal Schemes Portal \u2014 discover government welfare schemes by state, district and mandal.",
+  "type": "module",
+  "workspaces": [
+    "shared",
+    "server",
+    "client"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "npm run dev -w server & npm run dev -w client",
+    "dev:server": "npm run dev -w server",
+    "dev:client": "npm run dev -w client",
+    "build": "npm run build -w client && npm run build -w server",
+    "start": "npm run start -w server",
+    "db:migrate": "npm run db:migrate -w server",
+    "db:seed": "npm run db:seed -w server --",
+    "admin:create": "npm run admin:create -w server --",
+    "typecheck": "npm run typecheck -w shared && npm run typecheck -w server && npm run typecheck -w client",
+    "test": "npm run test -w shared && npm run test -w server && npm run test -w client",
+    "test:e2e": "node e2e/run.cjs",
+    "db:migrate:prod": "npm run db:migrate:prod -w server",
+    "db:seed:prod": "npm run db:seed:prod -w server --",
+    "admin:create:prod": "npm run admin:create:prod -w server --"
+  }
+}

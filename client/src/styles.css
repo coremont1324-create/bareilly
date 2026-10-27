@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    font-size: 100%;
+  }
+  html.text-scale-sm {
+    font-size: 93.75%;
+  }
+  html.text-scale-lg {
+    font-size: 118.75%;
+  }
+  body {
+    @apply bg-surface text-ink antialiased font-sans;
+    overflow-x: hidden;
+  }
+  :focus-visible {
+    outline: 3px solid #f5b400;
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  /* High-contrast mode: darker text, stronger borders, underlined links. */
+  html.high-contrast body {
+    @apply bg-white text-black;
+  }
+  html.high-contrast .text-ink-soft,
+  html.high-contrast .text-ink-muted,
+  html.high-contrast .text-slate-500,
+  html.high-contrast .text-slate-600 {
+    color: #111 !important;
+  }
+  html.high-contrast .border-surface-line {
+    border-color: #333 !important;
+  }
+  html.high-contrast main a {
+    text-decoration: underline;
+  }
+}
+
+@layer components {
+  .page {
+    @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8;
+  }
+  .card {
+    @apply rounded-xl border border-surface-line bg-surface-card shadow-card;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-colors
+      disabled:cursor-not-allowed disabled:opacity-60 min-h-[2.5rem];
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-hover;
+  }
+  .btn-green {
+    @apply btn bg-emerald-700 text-white hover:bg-emerald-800;
+  }
+  .btn-outline {
+    @apply btn border border-brand/40 bg-white text-brand hover:bg-brand-soft;
+  }
+  .btn-ghost {
+    @apply btn text-ink-soft hover:bg-surface-muted;
+  }
+  .btn-danger {
+    @apply btn border border-red-300 bg-white text-red-700 hover:bg-red-50;
+  }
+  .input {
+    @apply block w-full rounded-lg border border-surface-line bg-white px-3 py-2.5 text-sm text-ink placeholder:text-ink-muted
+      focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/25;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  .section-title {
+    @apply text-lg font-bold text-navy-900;
+  }
+}
